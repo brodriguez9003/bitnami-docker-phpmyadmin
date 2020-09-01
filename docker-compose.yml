@@ -11,10 +11,17 @@ services:
     environment: 
       - PHPMYADMIN_PASSWORD=my_password
     ports:
-      - '8080:8080'
-      - '8443:8443'
+      - '8082:8080'
+      - '9443:8443'
     depends_on:
       - mariadb
+  apache:
+    image: 'docker.io/bitnami/apache:latest'
+      ports:
+        - '8080:8080'
+        - '8443:8443'
+      volumes:
+        - /home/projects/dl/iomad/iomad:/app
 volumes:
   mariadb_data:
     driver: local
